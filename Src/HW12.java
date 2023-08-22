@@ -1,19 +1,29 @@
 import java.util.Arrays;
+import java.util.Random;
 
 public class HW12 {
     public static void main(String[] args) {
-        int[] array  = new int[]{2, 0, 5, 8, 2, 9, 4};
-        int[] array1 = new int[]{9, 3, 5, 7, 2, 8, 4};
-        for(int i = 0; i < array.length; i++){
-        for(int i1 = 0; i < array1.length; i++){
+        int[] winTicket = initializeTicket(7);
+        int[] playerTicket = initializeTicket(7);
+        Arrays.sort(winTicket);
+        Arrays.sort(playerTicket);
+        System.out.println(Arrays.toString(winTicket));
+        System.out.println(Arrays.toString(playerTicket));
+        int count = 0;
+        for (int i = 0; i < winTicket.length; i++) {
+            if (winTicket[i] == playerTicket[i]) {
+                count++;
+            }
         }
-        Arrays.sort(array);
-        Arrays.sort(array1);
-        System.out.println(Arrays.toString(array) + "Числа, які загадані фірмою-організатором лотереї");
-        System.out.println(Arrays.toString(array1) + "Числа, які вгадав гравець");
+        System.out.println("Matches =" + count);
+    }
 
-
-
+    public static int[] initializeTicket(int lengthTicket) {
+        Random random = new Random();
+        int[] ticket = new int[lengthTicket];
+        for (int i = 0; i < lengthTicket; i++) {
+            ticket[i] = random.nextInt(10);
         }
+        return ticket;
     }
 }
